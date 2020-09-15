@@ -1,5 +1,6 @@
 import telegram
 from datetime import time, datetime, timedelta
+import time as delay
 import threading
 import ifttt
 import netlisten
@@ -101,9 +102,10 @@ def react_to(msg):
         splitString = msg.split()
         minutes = int(splitString[1])
         command = ""
-        for i in range(len(splitString)-2):
-            command += splitString[i+2]
-        say(command)
+        for i in range(len(splitString)-3):
+            command += splitString[i+3]
+        say("I'll execute '" + command + "' after " + str(minutes) + " minutes")
+        do_after(command, minutes)
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nYou can say 'help' for a list of what I'll respond to"
@@ -157,6 +159,11 @@ def turn_light_on():
 def turn_light_off():
     ifttt.send_to_ifttt('switched_off')
     say("Lights off then")
+
+
+def do_after(command, minutes):
+    delay.sleep(minutes * 60)
+    react_to(command)
 
 
 def go_to_sleep():
