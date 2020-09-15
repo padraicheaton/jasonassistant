@@ -53,6 +53,9 @@ def react_to(msg):
             functionString += " - " + function + "\n"
         say(functionString)
 
+    elif msg == "test":
+        say("yep, auto updating works")
+
     elif msg == "hi" or msg == "hi jason" or msg == "hey" or msg == "hey jason":
         say(random.choice(greetings))
 
