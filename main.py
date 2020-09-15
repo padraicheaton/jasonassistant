@@ -3,6 +3,7 @@ import responses
 import time as delay
 from threading import Thread
 import random
+import subprocess
 
 print("Jason V1\nBooting Up...\n")
 
@@ -33,8 +34,11 @@ def listen():
         if msg == "go to sleep":
             if responses.go_to_sleep():
                 break
-
-        responses.react_to(msg)
+        if msg == "restart":
+            subprocess.Popen(["./runassistant.sh"])
+            break
+        else:
+            responses.react_to(msg)
 
 
 main_thread = Thread(target=listen)

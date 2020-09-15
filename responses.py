@@ -1,7 +1,6 @@
 import telegram
 from datetime import time, datetime, timedelta
 import threading
-import envsetup
 import ifttt
 import netlisten
 import random
@@ -20,7 +19,6 @@ def react_to(msg):
         "Say Thanks ('thanks')",
         "Ask me to remind you to go home ('home by hour:minute')",
         "Ask me to remind you to do something ('remind me in {x} minutes to {something}')",
-        "Ask me to set up a predefined environment ('setup my {env_name}')",
         "Ask me to turn your light on or off ('turn my light on/off')",
         "Tuck me into bed/Shut down ('go to sleep')",
         "Bring up this menu ('help/what can you do?')"
@@ -83,10 +81,6 @@ def react_to(msg):
             message += word + " "
         remind_in(minutes, message.strip())
 
-    elif bool(re.match(setupComparison, msg)):
-        splitString = msg.split()
-        setup(splitString[2])
-
     elif bool(re.match(lightComparison, msg)):
         splitString = msg.split()
         operation = splitString[len(splitString) - 1]
@@ -100,7 +94,7 @@ def react_to(msg):
         command = ''
         for i in range(len(splitString)-4):
             command += splitString[i+4] + " "
-        thread = threading.Thread(target=netlisten.execute_when_return_home, args=(react_to, command.strip()))
+        thread = threading.Thread(target=netlisten.execute_when_return_home, args=(command.strip()))
         thread.start()
 
     else:
@@ -145,21 +139,6 @@ def send_reminder_at(given_time, message, home_remind=False):
             if home_remind:
                 remind_in(30, "get your ass home")
             break
-
-
-def setup(environment):
-    success = True
-
-    if environment == "uni" or environment == "university":
-        envsetup.setup_uni()
-    elif environment == "youtube":
-        envsetup.setup_youtube()
-    else:
-        success = False
-        say("I'm not sure I know how that one's set up...")
-
-    if success:
-        say("I've set up your " + environment + " environment, it's ready and waiting for you")
 
 
 def turn_light_on():
