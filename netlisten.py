@@ -5,7 +5,7 @@ PhoneIP = '192.168.0.171'
 
 
 def execute_when_return_home(func, command):
-    proc = subprocess.Popen(["ping", "-t", PhoneIP], stdout=subprocess.PIPE)
+    proc = subprocess.Popen(["ping", PhoneIP], stdout=subprocess.PIPE)
     print("Waiting to execute '" + command + "' when the user gets home")
 
     while True:
@@ -15,6 +15,6 @@ def execute_when_return_home(func, command):
 
         response = line.decode('utf-8')
 
-        if "TTL" in response:
+        if "ttl" in response:
             func(command)
             break
