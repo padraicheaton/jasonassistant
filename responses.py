@@ -103,9 +103,9 @@ def react_to(msg):
         minutes = int(splitString[1])
         command = ""
         for i in range(len(splitString)-3):
-            command += splitString[i+3]
-        say("I'll execute '" + command + "' after " + str(minutes) + " minutes")
-        thread = threading.Thread(target=do_after, args=(command, minutes))
+            command += splitString[i+3] + " "
+        say("I'll execute '" + command.strip() + "' after " + str(minutes) + " minutes")
+        thread = threading.Thread(target=do_after, args=(command.strip(), minutes))
         thread.start()
 
     else:
