@@ -5,7 +5,7 @@ from threading import Thread
 import random
 import subprocess
 
-print("Jason V1\nBooting Up...\n")
+print("\nJason V2\nBooting Up...\n")
 
 
 def listen():
@@ -14,7 +14,9 @@ def listen():
         "I'm up and ready to go!",
         "Just sat down with my coffee, ready to work!",
         "Just sat down with my coffee, ready to work!",
-        "I'm here! Let me know if you need anything :)"
+        "I'm here! Let me know if you need anything :)",
+        "What's up mate, how can I help?",
+        "Hey! Long time no see"
     ]
 
     responses.say(random.choice(wakings))
