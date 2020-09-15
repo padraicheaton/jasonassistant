@@ -103,7 +103,7 @@ def react_to(msg):
         command = ""
         for i in range(len(splitString)-2):
             command += splitString[i+2]
-        print(command)
+        say(command)
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nYou can say 'help' for a list of what I'll respond to"
