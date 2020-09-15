@@ -8,9 +8,9 @@ import re
 
 homeStatementComparison = re.compile('home by.+')
 remindMeToComparison = re.compile('remind me in.+ minutes to.+')
-setupComparison = re.compile('setup my.+')
 lightComparison = re.compile('turn my light.+')
 homeFuncComparison = re.compile('when I get home.+')
+executeAfterTimeComparison = re.compile('in.+minutes.+')
 
 
 def react_to(msg):
@@ -96,6 +96,14 @@ def react_to(msg):
             command += splitString[i+4] + " "
         thread = threading.Thread(target=netlisten.execute_when_return_home, args=(command.strip()))
         thread.start()
+
+    elif bool(re.match(executeAfterTimeComparison, msg)):
+        splitString = msg.split()
+        minutes = int(splitString[1])
+        command = ""
+        for i in range(len(splitString)-2):
+            command += splitString[i+2]
+        print(command)
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nYou can say 'help' for a list of what I'll respond to"
