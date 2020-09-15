@@ -105,7 +105,8 @@ def react_to(msg):
         for i in range(len(splitString)-3):
             command += splitString[i+3]
         say("I'll execute '" + command + "' after " + str(minutes) + " minutes")
-        do_after(command, minutes)
+        thread = threading.Thread(target=do_after, args=(command, minutes))
+        thread.start()
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nYou can say 'help' for a list of what I'll respond to"
