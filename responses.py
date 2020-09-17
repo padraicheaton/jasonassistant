@@ -92,10 +92,10 @@ def react_to(msg):
 
     elif bool(re.match(homeFuncComparison, msg)):
         splitString = msg.split()
-        command = ''
+        spoofMessage = ""
         for i in range(len(splitString)-4):
-            command += splitString[i+4] + " "
-        thread = threading.Thread(target=netlisten.execute_when_return_home, args=(command.strip()))
+            spoofMessage += splitString[i+4] + " "
+        thread = threading.Thread(target=netlisten.execute_when_return_home, args=(spoofMessage.strip()))
         thread.start()
 
     elif bool(re.match(executeAfterTimeComparison, msg)):
