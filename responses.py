@@ -97,7 +97,7 @@ def react_to(msg):
             spoofMessage += splitString[i+4] + " "
         spoofMessage = spoofMessage.strip()
         print("'" + spoofMessage + "'")
-        thread = threading.Thread(target=execute_when_return_home, args=(spoofMessage.strip()))
+        thread = threading.Thread(target=execute_when_return_home, args=str(spoofMessage))
         thread.start()
 
     elif bool(re.match(executeAfterTimeComparison, msg)):
