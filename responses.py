@@ -96,8 +96,8 @@ def react_to(msg):
         for i in range(len(splitString)-4):
             spoofMessage += splitString[i+4] + " "
         spoofMessage = spoofMessage.strip()
-        print("'" + spoofMessage + "'")
-        thread = threading.Thread(target=execute_when_return_home, args=str(spoofMessage))
+        minutes = 1
+        thread = threading.Thread(target=execute_when_return_home, args=(spoofMessage, minutes))
         thread.start()
 
     elif bool(re.match(executeAfterTimeComparison, msg)):
@@ -169,13 +169,15 @@ def do_after(command, minutes):
     react_to(command)
 
 
-def execute_when_return_home(command):
+def execute_when_return_home(command, minutes):
     PhoneIP = '192.168.0.171'
 
     proc = subprocess.Popen(["ping", PhoneIP], stdout=subprocess.PIPE)
     print("Waiting to execute '" + command + "' when the user gets home")
 
     say("When you get home, I'll execute '" + command + "'")
+
+    delay.sleep(minutes * 60)
 
     while True:
         line = proc.stdout.readline()
