@@ -38,7 +38,7 @@ def listen():
                 break
         if msg == "restart":
             responses.say("Let me check for updates, then I'll start back up again...")
-            subprocess.Popen(["./runassistant.sh"])
+            subprocess.Popen(["./restart.sh"])
             break
         else:
             responses.react_to(msg)
