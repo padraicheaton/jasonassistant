@@ -95,6 +95,8 @@ def react_to(msg):
         spoofMessage = ""
         for i in range(len(splitString)-4):
             spoofMessage += splitString[i+4] + " "
+        spoofMessage = spoofMessage.strip()
+        print("'" + spoofMessage + "'")
         thread = threading.Thread(target=execute_when_return_home, args=(spoofMessage.strip()))
         thread.start()
 
