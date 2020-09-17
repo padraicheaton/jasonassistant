@@ -3,9 +3,9 @@ from datetime import time, datetime, timedelta
 import time as delay
 import threading
 import ifttt
-import netlisten
 import random
 import re
+import subprocess
 
 homeStatementComparison = re.compile('home by.+')
 remindMeToComparison = re.compile('remind me in.+ minutes to.+')
@@ -95,7 +95,7 @@ def react_to(msg):
         spoofMessage = ""
         for i in range(len(splitString)-4):
             spoofMessage += splitString[i+4] + " "
-        thread = threading.Thread(target=netlisten.execute_when_return_home, args=(spoofMessage.strip()))
+        thread = threading.Thread(target=execute_when_return_home, args=(spoofMessage.strip()))
         thread.start()
 
     elif bool(re.match(executeAfterTimeComparison, msg)):
@@ -165,6 +165,26 @@ def turn_light_off():
 def do_after(command, minutes):
     delay.sleep(minutes * 60)
     react_to(command)
+
+
+def execute_when_return_home(command):
+    PhoneIP = '192.168.0.171'
+
+    proc = subprocess.Popen(["ping", PhoneIP], stdout=subprocess.PIPE)
+    print("Waiting to execute '" + command + "' when the user gets home")
+
+    say("When you get home, I'll execute '" + command + "'")
+
+    while True:
+        line = proc.stdout.readline()
+        if not line:
+            break
+
+        response = line.decode('utf-8')
+
+        if "ttl" in response:
+            react_to(command)
+            break
 
 
 def go_to_sleep():
