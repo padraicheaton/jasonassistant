@@ -110,9 +110,6 @@ def react_to(msg):
         thread = threading.Thread(target=do_after, args=(command.strip(), minutes))
         thread.start()
 
-    elif msg == "test":
-        say("it works bud")
-
     else:
         confusedResponse = random.choice(confusions) + "\n\nYou can say 'help' for a list of what I'll respond to"
         say(confusedResponse)
