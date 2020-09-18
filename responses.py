@@ -183,7 +183,7 @@ def execute_when_return_home(command, minutes):
 
     say("When you get home, I'll execute '" + command + "'")
 
-    delay.sleep(minutes * 60)
+    delay.sleep(minutes)
 
     while True:
         line = proc.stdout.readline()
@@ -193,6 +193,7 @@ def execute_when_return_home(command, minutes):
         response = line.decode('utf-8')
 
         if "ttl" in response:
+            say("Welcome home!")
             react_to(command)
             break
 
