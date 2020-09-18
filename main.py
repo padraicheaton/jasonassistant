@@ -43,7 +43,10 @@ def listen():
             subprocess.Popen(["./restart.sh"])
             break
         else:
-            responses.react_to(msg)
+            try:
+                responses.react_to(msg)
+            except Exception as e:
+                responses.say(str(e))
 
 
 main_thread = Thread(target=listen)
