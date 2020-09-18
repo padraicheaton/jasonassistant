@@ -21,6 +21,8 @@ def react_to(msg):
         "Ask me to remind you to go home ('home by hour:minute')",
         "Ask me to remind you to do something ('remind me in {x} minutes to {something}')",
         "Ask me to turn your light on or off ('turn my light on/off')",
+        "Get me to do something when you get home ('when I get home {function}')",
+        "Get me to do something after some time ('in {x} minutes {function}')",
         "Tuck me into bed/Shut down ('go to sleep')",
         "Bring up this menu ('help/what can you do?')"
     ]
