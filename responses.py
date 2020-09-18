@@ -82,7 +82,8 @@ def react_to(msg):
             if word == "am":
                 word = "are"
             message += word + " "
-        remind_in(minutes, message.strip())
+        thread = threading.Thread(target=remind_in, args=(minutes, message.strip()))
+        thread.start()
 
     elif bool(re.match(lightComparison, msg)):
         splitString = msg.split()
@@ -142,13 +143,9 @@ def go_home_reminder(hour, minute):
 
 
 def remind_in(minutes, message):
-    reminder_time = datetime.now()
-    reminder_time += timedelta(seconds=minutes*60)
-
     say("I'll remind you to " + message + " in " + str(minutes) + " minutes")
-
-    thread = threading.Thread(target=send_reminder_at, args=(reminder_time.time(), "Hey! You need to " + message))
-    thread.start()
+    delay.sleep(minutes * 60)
+    say("Hey! You need to " + message)
 
 
 def send_reminder_at(given_time, message, home_remind=False):
