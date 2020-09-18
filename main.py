@@ -24,7 +24,7 @@ def listen():
     last_message = telegram.get_most_recent_message()
 
     while True:
-        delay.sleep(10)
+        delay.sleep(5)
         msg = telegram.get_most_recent_message()
 
         if msg == last_message or msg is None:
