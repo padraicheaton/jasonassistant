@@ -115,7 +115,7 @@ def react_to(msg):
         say("the number is " + number)
 
     else:
-        confusedResponse = random.choice(confusions) + "\n\nYou can say 'help' for a list of what I'll respond to"
+        confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
         say(confusedResponse)
 
 

@@ -46,7 +46,7 @@ def listen():
             try:
                 responses.react_to(msg)
             except Exception as e:
-                responses.say("Error:\n" + str(e))
+                responses.say("!! Error !!:\n" + str(e))
 
 
 main_thread = Thread(target=listen)
