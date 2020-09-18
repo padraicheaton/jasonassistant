@@ -5,7 +5,7 @@ from threading import Thread
 import random
 import subprocess
 
-title = "Jason V3"
+title = "Jason (Version 3)"
 print(title + "\n Booting up...\n")
 
 
@@ -20,7 +20,7 @@ def listen():
         "Hey! Long time no see"
     ]
 
-    responses.say(title)
+    responses.say(title + " running...")
     responses.say(random.choice(wakings))
     print("Waiting for your messages...\n")
     last_message = telegram.get_most_recent_message()
