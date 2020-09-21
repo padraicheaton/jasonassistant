@@ -62,7 +62,9 @@ def react_to(msg):
     elif bool(re.match(homeStatementComparison, msg)):
         splitMessage = msg.split()
         timeArray = splitMessage[len(splitMessage) - 1].split(':')
-        go_home_reminder(int(timeArray[0]), int(timeArray[1]))
+        hour = int(timeArray[0])
+        minute = int(timeArray[1]) if len(timeArray) > 1 else 0
+        go_home_reminder(hour, minute)
 
     elif msg == "thanks jason" or msg == "thanks":
         say(random.choice(thanks))
@@ -143,7 +145,7 @@ def go_home_reminder(hour, minute):
 
 
 def remind_in(minutes, message):
-    say("I'll remind you to " + message + " in " + str(minutes) + " minutes")
+    say("I'll remind you to '" + message + "' in " + str(minutes) + " minutes")
     delay.sleep(minutes * 60)
     say("Hey! You need to " + message)
 

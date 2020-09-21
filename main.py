@@ -46,7 +46,12 @@ def listen():
             try:
                 responses.react_to(msg)
             except Exception as e:
-                responses.say("!! Error !! :\n" + str(e))
+                try:
+                    responses.say("!! Error !! :\n" + str(e))
+                except Exception as err:
+                    print(str(err))
+                    print("Internet appears to be down, waiting one minute before trying again...")
+                    delay.sleep(60)
 
 
 main_thread = Thread(target=listen)
