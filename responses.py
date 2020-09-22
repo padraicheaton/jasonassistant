@@ -1,5 +1,5 @@
 import telegram
-from datetime import time, datetime, timedelta
+from datetime import time, datetime
 import time as delay
 import threading
 import ifttt

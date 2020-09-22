@@ -1,7 +1,7 @@
 import telegram
 import responses
 import time as delay
-from threading import Thread
+import threading
 import random
 import subprocess
 
@@ -54,5 +54,5 @@ def listen():
                     delay.sleep(60)
 
 
-main_thread = Thread(target=listen)
+main_thread = threading.Thread(target=listen)
 main_thread.start()
