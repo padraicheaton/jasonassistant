@@ -6,6 +6,7 @@ import ifttt
 import random
 import re
 import subprocess
+import netspeedtest
 
 homeStatementComparison = re.compile('home by.+')
 remindMeToComparison = re.compile('remind me in.+ minutes to.+')
@@ -118,6 +119,10 @@ def react_to(msg):
     elif msg == "test error":
         number = 10
         say("the number is " + number)
+
+    elif msg == "do a speedtest":
+        say("Let's see how speedy we are...")
+        netspeedtest.perform_test()
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
