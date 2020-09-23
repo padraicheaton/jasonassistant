@@ -133,7 +133,8 @@ def react_to(msg):
     elif bool(re.match(newsTopicComparison, msg)):
         say("Let's have a look here...")
         topic = ""
-        for i in range(len(msg.split()-3)):
+        splitMsg = msg.split()
+        for i in range(len(splitMsg)-3):
             topic += msg.split()[i+3]
         say(news.get_news_about(topic))
 
