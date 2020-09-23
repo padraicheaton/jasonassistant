@@ -136,6 +136,8 @@ def react_to(msg):
         splitMsg = msg.split()
         for i in range(len(splitMsg)-3):
             topic += msg.split()[i+3]
+            if (i+3) < len(splitMsg)-1:
+                topic += '+'
         say(news.get_news_about(topic))
 
     else:
