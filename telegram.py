@@ -18,16 +18,17 @@ except requests.exceptions.ConnectionError:
 def send_text(message):
     print("Sending \"" + message + "\"\n")
 
+    if len(message) >= 4096:
+        send_text("Requested message was too long...")
+        return
+
     http_message = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + message
 
     try:
         response = requests.get(http_message)
         return response.json()
-    except Exception as e:
-        try:
-            send_text("!! Error !! :\n" + str(e))
-        except requests.exceptions.ConnectionError:
-            print("Can't connect to the internet")
+    except requests.exceptions.ConnectionError:
+        print("Can't connect to the internet")
 
 
 def get_most_recent_message():
