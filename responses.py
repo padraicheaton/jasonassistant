@@ -7,6 +7,7 @@ import random
 import re
 import subprocess
 import netspeedtest
+import news
 
 homeStatementComparison = re.compile('home by.+')
 remindMeToComparison = re.compile('remind me in.+ minutes to.+')
@@ -123,6 +124,10 @@ def react_to(msg):
     elif msg == "do a speedtest":
         say("Let's see how speedy we are...")
         netspeedtest.perform_test()
+
+    elif msg == "what are the top headlines?":
+        say("Let me check for you...")
+        say(news.get_top_news())
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
