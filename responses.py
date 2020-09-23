@@ -126,7 +126,7 @@ def react_to(msg):
         say("Let's see how speedy we are...")
         netspeedtest.perform_test()
 
-    elif msg == "what are the top headlines?":
+    elif msg == "what's new" or msg == "what's new?":
         say("Let me check for you...")
         say(news.get_top_news())
 
