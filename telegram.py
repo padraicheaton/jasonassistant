@@ -23,8 +23,11 @@ def send_text(message):
     try:
         response = requests.get(http_message)
         return response.json()
-    except requests.exceptions.ConnectionError:
-        print("Can't connect to the internet")
+    except Exception as e:
+        try:
+            send_text("!! Error !! :\n" + str(e))
+        except requests.exceptions.ConnectionError:
+            print("Can't connect to the internet")
 
 
 def get_most_recent_message():
