@@ -14,6 +14,7 @@ remindMeToComparison = re.compile('remind me in.+ minutes to.+')
 lightComparison = re.compile('turn my light.+')
 homeFuncComparison = re.compile('when I get home.+')
 executeAfterTimeComparison = re.compile('in.+minutes.+')
+newsTopicComparison = re.compile("what's new with.+")
 
 
 def react_to(msg):
@@ -128,6 +129,13 @@ def react_to(msg):
     elif msg == "what are the top headlines?":
         say("Let me check for you...")
         say(news.get_top_news())
+
+    elif bool(re.match(newsTopicComparison, msg)):
+        say("Let's have a look here...")
+        topic = ""
+        for i in range(len(msg.split()-3)):
+            topic += msg.split()[i+3]
+        say(news.get_news_about(topic))
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"

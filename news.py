@@ -16,8 +16,10 @@ def get_news_about(topic):
 def get_news(url):
     response = requests.get(url)
     info = response.json()
+    if info['totalResults'] == 0:
+        return "Couldn't find any articles about that :("
     message = ""
     for i in range(3):
         top_article = info['articles'][i]
-        message += top_article['title'] + '\n' + top_article['url'] + '\n'
+        message += top_article['title'] + '\n' + top_article['url'] + '\n\n'
     return message
