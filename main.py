@@ -5,7 +5,7 @@ import threading
 import random
 import subprocess
 
-title = "Jason (Version 3)"
+title = "Jason (Version 3.1)"
 print(title + "\n Booting up...\n")
 
 

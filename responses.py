@@ -26,6 +26,8 @@ def react_to(msg):
         "Ask me to turn your light on or off ('turn my light on/off')",
         "Get me to do something when you get home ('when I get home {function}')",
         "Get me to do something after some time ('in {x} minutes {function}')",
+        "Get the top headlines in Australia from today ('what's new')",
+        "Get the newest headlines about a topic ('what's new with {topic}')"
         "Tuck me into bed/Shut down ('go to sleep')",
         "Bring up this menu ('help/what can you do?')"
     ]
