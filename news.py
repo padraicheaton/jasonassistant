@@ -19,7 +19,7 @@ def get_news(url):
     if info['totalResults'] == 0:
         return "Couldn't find any articles about that :("
     message = ""
-    for i in range(5 if info['totalResults'] >= 5 else info['totalResults']):
+    for i in range(3 if info['totalResults'] >= 3 else info['totalResults']):
         top_article = info['articles'][i]
         message += top_article['title'] + '\n' + top_article['url'] + '\n\n'
     return message
