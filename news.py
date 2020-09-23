@@ -1,15 +1,18 @@
 import requests
+import datetime
 
 API_KEY = 'c10aaad5b172490b9ff1b954d6cec496'
 
 
 def get_top_news():
-    top_url = 'http://newsapi.org/v2/top-headlines?country=au&from=2020-09-23&apiKey=' + API_KEY
+    date = str(datetime.datetime.now()).split()[0]
+    top_url = 'http://newsapi.org/v2/top-headlines?country=au&from=' + date + '&apiKey=' + API_KEY
     return get_news(top_url)
 
 
 def get_news_about(topic):
-    question_url = 'http://newsapi.org/v2/everything?q=' + topic + '&sortBy=relevancy&language=en&from=2020-09-23&apiKey=' + API_KEY
+    date = str(datetime.datetime.now()).split()[0]
+    question_url = 'http://newsapi.org/v2/everything?q=' + topic + '&sortBy=relevancy&language=en&from=' + date + '&apiKey=' + API_KEY
     return get_news(question_url)
 
 
