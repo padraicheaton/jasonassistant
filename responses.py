@@ -143,6 +143,9 @@ def react_to(msg):
                 topic += '+'
         news.get_news_about(topic)
 
+    elif msg == "test photo":
+        say('https://cdn.shopify.com/s/files/1/2017/9999/files/Double_Thumbs_Up_large.jpg?v=1503664724')
+
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
         say(confusedResponse)
