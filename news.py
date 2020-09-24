@@ -10,7 +10,7 @@ def get_top_news():
 
 
 def get_news_about(topic):
-    question_url = 'http://newsapi.org/v2/everything?q=' + topic + '&sortBy=relevancy&language=en&from=' + get_date() + '&apiKey=' + API_KEY
+    question_url = 'http://newsapi.org/v2/everything?qInTitle=' + topic + '&sortBy=relevancy&language=en&from=' + get_date() + '&apiKey=' + API_KEY
     return get_news(question_url)
 
 
