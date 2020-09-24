@@ -131,7 +131,7 @@ def react_to(msg):
 
     elif msg == "what's new" or msg == "what's new?":
         say("Let me check for you...")
-        say(news.get_top_news())
+        news.get_top_news()
 
     elif bool(re.match(newsTopicComparison, msg)):
         say("Let's have a look here...")
@@ -141,7 +141,7 @@ def react_to(msg):
             topic += msg.split()[i+3]
             if (i+3) < len(splitMsg)-1:
                 topic += '+'
-        say(news.get_news_about(topic))
+        news.get_news_about(topic)
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
