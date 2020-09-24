@@ -19,7 +19,7 @@ def get_news(url):
     response = requests.get(url)
     info = response.json()
     if info['totalResults'] == 0:
-        return "Couldn't find any articles about that :("
+        responses.say("Couldn't find any articles about that :(")
     for i in range(10 if info['totalResults'] >= 10 else info['totalResults']):
         top_article = info['articles'][i]
         responses.say(top_article['title'] + '\n' + top_article['url'])
