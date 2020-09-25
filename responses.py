@@ -246,15 +246,19 @@ def execute_when_return_home(command, minutes):
 
 
 def alarm_execute(alarmTime, commands):
+
+    seconds = 0
+
     if datetime.now().time() > time(12, 00) > alarmTime.time():
         now = datetime.now()
         today = datetime.today()
         midnight = datetime(year=today.year, month=today.month, day=today.day, hour=23, minute=59)
         diff = midnight - now
         alarmTime += timedelta(days=1)
-        delay.sleep(diff.total_seconds())
+        seconds = diff.total_seconds()
 
     say("At " + str(alarmTime) + " I'll execute " + str(commands))
+    delay.sleep(seconds)
 
     while datetime.now() < alarmTime:
         delay.sleep(1)
