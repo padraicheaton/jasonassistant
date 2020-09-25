@@ -148,8 +148,9 @@ def react_to(msg):
         splitMsg = msg.split()
         givenTime = splitMsg[1]
         hour = int(givenTime.split(":")[0])
-        minute = int(givenTime.split(":")[1])
-        alarm = datetime(2020, 9, 25, hour, minute, 0, 0)
+        minute = int(givenTime.split(":")[1]) if len(givenTime.split()) > 1 else 0
+        today = datetime.today()
+        alarm = datetime(today.year, today.month, today.day, hour, minute, 0, 0)
 
         constructedMsg = ""
         for i in range(len(splitMsg) - 2):
@@ -239,7 +240,17 @@ def execute_when_return_home(command, minutes):
 
 def alarm_execute(alarmTime, commands):
     if datetime.now().time() > time(12, 00) > alarmTime.time():
-        say("it is 'pm' and alarm is for 'am'")
+        now = datetime.now()
+        today = datetime.today()
+        midnight = datetime(year=today.year, month=today.month, day=today.day, hour=23, minute=59)
+        diff = midnight - now
+        delay.sleep(diff.total_seconds())
+
+    while datetime.now() < alarmTime:
+        delay.sleep(1)
+
+    for command in commands:
+        react_to(command)
 
 
 def go_to_sleep():
