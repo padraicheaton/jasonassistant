@@ -151,7 +151,7 @@ def react_to(msg):
         splitMsg = msg.split()
         givenTime = splitMsg[1]
         hour = int(givenTime.split(":")[0])
-        minute = int(givenTime.split(":")[1]) if len(givenTime.split()) > 1 else 0
+        minute = int(givenTime.split(":")[1])
         today = datetime.today()
         alarm = datetime(today.year, today.month, today.day, hour, minute, 0, 0)
 
