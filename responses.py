@@ -15,6 +15,7 @@ lightComparison = re.compile('turn my light.+')
 homeFuncComparison = re.compile('when I get home.+')
 executeAfterTimeComparison = re.compile('in.+minutes.+')
 newsTopicComparison = re.compile("what's new with.+")
+alarmComparison = re.compile("at.+:.+ .+")
 
 
 def react_to(msg):
@@ -143,6 +144,24 @@ def react_to(msg):
                 topic += '+'
         news.get_news_about(topic)
 
+    elif bool(re.match(alarmComparison, msg)):
+        msg = "at 5:43 turn my light on, what's new"
+        splitMsg = msg.split()
+        givenTime = splitMsg[1]
+        hour = int(givenTime.split(":")[0])
+        if datetime.datetime.now().time() > datetime.time(12, 0):
+            hour += 12
+        minute = int(givenTime.split(":")[1])
+        alarm = datetime.datetime(2020, 9, 25, hour, minute, 0, 0)
+
+        constructedMsg = ""
+        for i in range(len(splitMsg) - 2):
+            constructedMsg += splitMsg[i + 2]
+            if (i + 2) < len(splitMsg) - 1 and ',' not in splitMsg[i + 2]:
+                constructedMsg += ' '
+        commands = constructedMsg.split(',')
+        alarm_execute(alarm, commands)
+
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
         say(confusedResponse)
@@ -219,6 +238,11 @@ def execute_when_return_home(command, minutes):
             say("Welcome home!")
             react_to(command)
             break
+
+
+def alarm_execute(alarmTime, commands):
+    if datetime.now().time() > time(12, 00) > alarmTime.time():
+        say("it is 'pm' and alarm is for 'am'")
 
 
 def go_to_sleep():
