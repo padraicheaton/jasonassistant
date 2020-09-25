@@ -92,6 +92,7 @@ def react_to(msg):
                 word = "are"
             message += word + " "
         thread = threading.Thread(target=remind_in, args=(minutes, message.strip()))
+        thread.daemon = True
         thread.start()
 
     elif bool(re.match(lightComparison, msg)):
@@ -110,6 +111,7 @@ def react_to(msg):
         spoofMessage = spoofMessage.strip()
         minutes = 1
         thread = threading.Thread(target=execute_when_return_home, args=(spoofMessage, minutes))
+        thread.daemon = True
         thread.start()
 
     elif bool(re.match(executeAfterTimeComparison, msg)):
@@ -120,6 +122,7 @@ def react_to(msg):
             command += splitString[i+3] + " "
         say("I'll execute '" + command.strip() + "' after " + str(minutes) + " minutes")
         thread = threading.Thread(target=do_after, args=(command.strip(), minutes))
+        thread.daemon = True
         thread.start()
 
     elif msg == "test error":
@@ -159,8 +162,9 @@ def react_to(msg):
                 constructedMsg += ' '
         commands = constructedMsg.split(',')
 
-        say("At " + str(hour) + ":" + str(minute) + " I'll execute " + str(commands))
+        say("At " + str(alarm) + " I'll execute " + str(commands))
         thread = threading.Thread(target=alarm_execute, args=(alarm, commands))
+        thread.daemon = True
         thread.start()
 
     else:
@@ -185,6 +189,7 @@ def go_home_reminder(hour, minute):
     say("Okay, I will remind you to go home at " + str(hour-1) + ":" + str(minute) + suffix)
 
     thread = threading.Thread(target=send_reminder_at, args=(reminder_time, "You've got an hour to get home!! You might have to text mum too", True))
+    thread.daemon = True
     thread.start()
 
 
