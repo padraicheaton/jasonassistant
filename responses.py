@@ -149,10 +149,10 @@ def react_to(msg):
         splitMsg = msg.split()
         givenTime = splitMsg[1]
         hour = int(givenTime.split(":")[0])
-        if datetime.datetime.now().time() > datetime.time(12, 0):
+        if datetime.now().time() > time(12, 0):
             hour += 12
         minute = int(givenTime.split(":")[1])
-        alarm = datetime.datetime(2020, 9, 25, hour, minute, 0, 0)
+        alarm = datetime(2020, 9, 25, hour, minute, 0, 0)
 
         constructedMsg = ""
         for i in range(len(splitMsg) - 2):
