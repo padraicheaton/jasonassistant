@@ -158,7 +158,10 @@ def react_to(msg):
             if (i + 2) < len(splitMsg) - 1 and ',' not in splitMsg[i + 2]:
                 constructedMsg += ' '
         commands = constructedMsg.split(',')
-        alarm_execute(alarm, commands)
+
+        say("At " + str(hour) + ":" + str(minute) + " I'll execute " + str(commands))
+        thread = threading.Thread(target=alarm_execute, args=(alarm, commands))
+        thread.start()
 
     else:
         confusedResponse = random.choice(confusions) + "\n\nI didn't understand '" + msg + "', You can say 'help' for a list of what I'll respond to"
