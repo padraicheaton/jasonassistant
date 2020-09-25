@@ -162,7 +162,6 @@ def react_to(msg):
                 constructedMsg += ' '
         commands = constructedMsg.split(',')
 
-        say("At " + str(alarm) + " I'll execute " + str(commands))
         thread = threading.Thread(target=alarm_execute, args=(alarm, commands))
         thread.daemon = True
         thread.start()
@@ -254,6 +253,8 @@ def alarm_execute(alarmTime, commands):
         diff = midnight - now
         alarmTime += timedelta(days=1)
         delay.sleep(diff.total_seconds())
+
+    say("At " + str(alarmTime) + " I'll execute " + str(commands))
 
     while datetime.now() < alarmTime:
         delay.sleep(1)
