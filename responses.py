@@ -1,5 +1,5 @@
 import telegram
-from datetime import time, datetime
+from datetime import time, datetime, timedelta
 import time as delay
 import threading
 import ifttt
@@ -252,6 +252,7 @@ def alarm_execute(alarmTime, commands):
         today = datetime.today()
         midnight = datetime(year=today.year, month=today.month, day=today.day, hour=23, minute=59)
         diff = midnight - now
+        alarmTime += timedelta(days=1)
         delay.sleep(diff.total_seconds())
 
     while datetime.now() < alarmTime:
