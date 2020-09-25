@@ -38,7 +38,7 @@ def listen():
         if msg == "go to sleep":
             if responses.go_to_sleep():
                 break
-        if msg == "restart":
+        elif msg == "restart":
             responses.say("Let me check for updates, then I'll start back up again...")
             subprocess.Popen(["./restart.sh"])
             break
