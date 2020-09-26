@@ -250,7 +250,7 @@ def alarm_execute(alarmTime, commands):
     seconds = 0
 
     if datetime.now() > alarmTime:
-        if datetime.now().time() > time(12, 00) > alarmTime:
+        if datetime.now().time() > time(12, 00) > alarmTime.time():
             now = datetime.now()
             today = datetime.today()
             midnight = datetime(year=today.year, month=today.month, day=today.day, hour=23, minute=59, second=59)
