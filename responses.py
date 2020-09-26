@@ -250,7 +250,7 @@ def alarm_execute(alarmTime, commands):
     seconds = 0
 
     if datetime.now() > alarmTime:
-        if alarmTime < datetime.now < (alarmTime + timedelta(hours=12)):
+        if alarmTime < datetime.now() < (alarmTime + timedelta(hours=12)):
             alarmTime += timedelta(hours=12)
 
         elif datetime.now().time() > time(12, 00) > alarmTime.time():
