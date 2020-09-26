@@ -249,6 +249,9 @@ def alarm_execute(alarmTime, commands):
 
     seconds = 0
 
+    if datetime.now() > alarmTime:
+        alarmTime += timedelta(hours=12)
+
     if datetime.now().time() > time(12, 00) > alarmTime.time():
         now = datetime.now()
         today = datetime.today()
