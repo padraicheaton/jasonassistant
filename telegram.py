@@ -40,12 +40,13 @@ def get_most_recent_message():
 
         messageArray = jsonMessage["result"]
 
-        message = messageArray[len(messageArray) - 1]['message']['text']
+        if len(messageArray) > 0:
+            message = messageArray[len(messageArray) - 1]['message']['text']
 
-        if len(messageArray) >= 98:
-            send_text("I'm getting a little tired, might need to have a nap soon...\n\nMessage Bank is too full, "
-                      "restart to reset offset")
+            if len(messageArray) >= 98:
+                send_text("I'm getting a little tired, might need to have a nap soon...\n\nMessage Bank is too full, "
+                          "restart to reset offset")
 
-        return message
+            return message
     except requests.exceptions.ConnectionError:
         print("Can't connect to the internet")
