@@ -11,6 +11,8 @@ try:
     messageArr = checkJson["result"]
     lastUpdateId = messageArr[len(messageArr) - 1]['update_id']
     offset = int(lastUpdateId)
+    if (offset - 10) > 0:
+        offset -= 10
 except requests.exceptions.ConnectionError:
     print("Can't connect to the internet")
 
